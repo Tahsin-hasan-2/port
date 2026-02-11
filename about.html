@@ -117,7 +117,7 @@
         @media (max-width: 767px) {
 
             /* Base style consistency */
-            .hover-glow,
+            
             .permanent-glow {
                 transition: all 0.3s ease-out;
                 background: #1a1a2e !important;
@@ -147,17 +147,19 @@
 
 
 
-        /* Separate internal class: JUST for the hover movement */
-        .hover-lift {
-            transition: transform 0.3s ease;
-            display: inline-block;
-            /* Required for transform to work properly */
-        }
+       <style>
+    /* Separate internal class: JUST for the hover movement */
+    .hover-lift {
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        display: inline-block;
+    }
 
-        .hover-lift:hover {
-            transform: translateY(-10px) scale(1.05);
-            /* Lifts up and grows slightly */
-        }
+    /* Desktop Hover */
+    .hover-lift:hover, 
+    .hover-lift-active { /* The class the script will toggle */
+        transform: translateY(-10px) scale(1.05);
+    }
+</style>
     </style>
 </head>
 
@@ -530,10 +532,44 @@
             }, options);
 
             // This ensures every card with these classes gets the effect
-            const cards = document.querySelectorAll(' .permanent-glow,.hover-lift');
+            const cards = document.querySelectorAll(' .permanent-glow');
             cards.forEach(card => observer.observe(card));
         }
     </script>
+
+
+
+
+<!-- for mobile hover-lift -->
+
+
+
+    <script>
+    // Only run on mobile/tablets
+    if (window.innerWidth < 768) {
+        const liftOptions = {
+            root: null,
+            rootMargin: '-30% 0px -30% 0px', // Triggers in the middle 40% of the screen
+            threshold: 0.6 
+        };
+
+        const liftObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    // Apply the lift when the element is centered
+                    entry.target.classList.add('hover-lift-active');
+                } else {
+                    // Remove it when it moves away
+                    entry.target.classList.remove('hover-lift-active');
+                }
+            });
+        }, liftOptions);
+
+        // Target ONLY lift elements
+        const liftCards = document.querySelectorAll('.hover-lift');
+        liftCards.forEach(card => liftObserver.observe(card));
+    }
+</script>
 
 </body>
 
