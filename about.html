@@ -149,16 +149,31 @@
 
        <style>
     /* Separate internal class: JUST for the hover movement */
-   .hover-lift {
-            transition: transform 0.7s ease;
-            display: inline-block;
-            /* Required for transform to work properly */
-        }
+   /* --- Desktop & General Styles --- */
+.hover-lift {
+    transition: transform 0.7s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    display: inline-block;
+}
 
-        .hover-lift:hover {
-            transform: translateY(-10px) scale(1.05);
-            /* Lifts up and grows slightly */
-        }
+/* Standard hover for mouse users */
+.hover-lift:hover {
+    transform: translateY(-12px) scale(1.02);
+}
+
+/* --- Mobile Specific Logic (@media) --- */
+@media (max-width: 767px) {
+    /* This class is toggled by the JavaScript Observer */
+    .hover-lift-active {
+        transform: translateY(-15px) scale(1.05) !important;
+        /* Ensure no red glow is added here to keep the gold clean */
+        box-shadow: none !important; 
+    }
+    
+    /* Optional: If you want a VERY subtle shadow just to show depth on mobile */
+    .hover-lift-active {
+        text-shadow: 0 10px 20px rgba(0,0,0,0.5);
+    }
+}
 </style>
     </style>
 </head>
@@ -532,7 +547,7 @@
             }, options);
 
             // This ensures every card with these classes gets the effect
-            const cards = document.querySelectorAll(' .permanent-glow,.hover-lift');
+            const cards = document.querySelectorAll(' .permanent-glow');
             cards.forEach(card => observer.observe(card));
         }
     </script>
@@ -541,7 +556,28 @@
 
 
 <!-- for mobile hover-lift -->
+<script>
+    if (window.innerWidth < 768) {
+        // Observer for physical lifting (Belief section, etc.)
+        const liftObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('hover-lift-active');
+                } else {
+                    entry.target.classList.remove('hover-lift-active');
+                }
+            });
+        }, {
+            rootMargin: '-30% 0px -30% 0px', // Triggers in the center of the screen
+            threshold: 0.5
+        });
 
+        // Apply only to elements with .hover-lift class
+        document.querySelectorAll('.hover-lift').forEach(el => {
+            liftObserver.observe(el);
+        });
+    }
+</script>
 
 
  
