@@ -149,16 +149,16 @@
 
        <style>
     /* Separate internal class: JUST for the hover movement */
-    .hover-lift {
-        transition: transform 0.7s ease-out, box-shadow 0.7s ease-out;
-        display: inline-block;
-    }
+   .hover-lift {
+            transition: transform 0.7s ease;
+            display: inline-block;
+            /* Required for transform to work properly */
+        }
 
-    /* Desktop Hover */
-    .hover-lift:hover, 
-    .hover-lift-active { /* The class the script will toggle */
-        transform: translateY(-10px) scale(1.05);
-    }
+        .hover-lift:hover {
+            transform: translateY(-10px) scale(1.05);
+            /* Lifts up and grows slightly */
+        }
 </style>
     </style>
 </head>
