@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tahsin Hasan Portfolio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Color cycling animation for name */
+        @keyframes colorCycle {
+            0% {
+                color: #f90505;
+            }
+
+            /* pink */
+            25% {
+                color: #22d3ee;
+            }
+
+            /* cyan */
+            50% {
+                color: #03d54c;
+            }
+
+            /* purple */
+            75% {
+                color: #2205f8;
+            }
+
+            /* yellow */
+            100% {
+                color: #f90505;
+            }
+
+            /* back to pink */
+        }
+
+        .color-changing {
+            animation: colorCycle 6s infinite alternate;
+        }
+
+
+        @keyframes glitch {
+            0% {
+                text-shadow: 2px 2px #ff00de, -2px -2px #00ffff;
+            }
+
+            25% {
+                text-shadow: -2px -2px #ff00de, 2px 2px #00ffff;
+            }
+
+            50% {
+                text-shadow: 2px -2px #ff00de, -2px 2px #00ffff;
+            }
+
+            75% {
+                text-shadow: -2px 2px #ff00de, 2px -2px #00ffff;
+            }
+
+            100% {
+                text-shadow: 2px 2px #ff00de, -2px -2px #00ffff;
+            }
+        }
+
+        .glitch-text {
+            animation: glitch 0.3s infinite linear;
+        }
+
+        #mobile-menu {
+            color: rgb(3, 222, 83);
+            /* text-green-300 */
+            font-size: 1.25rem;
+            /* text-xl */
+            font-weight: 700;
+            /* font-bold */
+            transition: color 0.3s ease;
+        }
+
+        .mobile-menu:hover {
+            color: rgb(233, 4, 4);
+            /* hover:text-pink-400 */
+        }
+
+
+
+        .permanent-glow {
+            /* 1. The Border: Solid neon red */
+            border: 2px solid #ff0000;
+
+            /* 2. The Spread: Layered to be as wide as the hover effect was */
+            box-shadow:
+                0 0 10px #ff0000,
+                /* Bright core near border */
+                0 0 15px rgba(255, 0, 0, 0.6),
+                /* Middle spread */
+                0 0 20px rgba(255, 0, 0, 0.4);
+            /* Large outer atmospheric glow */
+
+            /* 3. Consistency: Ensure background is dark so glow pops */
+            background: rgba(26, 26, 46, 0.8);
+            transition: all 0.4s ease;
+            border-radius: 1rem;
+            /* Rounded corners */
+        }
+
+        /* Optional interaction: Just a slight scale since it's already glowing max */
+        .permanent-glow:hover {
+            transform: scale(1.03);
+            box-shadow:
+                0 0 10px #ff0000,
+                0 0 25px rgba(255, 0, 0, 0.7),
+                0 0 40px rgba(255, 0, 0, 0.5);
+        }
+
+        /* Only applies the transition and active state on mobile (screens smaller than 768px) */
+        /* Only applies the transition and active state on mobile (screens smaller than 768px) */
+        @media (max-width: 767px) {
+
+            /* Base style consistency */
+            .hover-glow,
+            .permanent-glow {
+                transition: all 0.3s ease-out;
+                background: #1a1a2e !important;
+                /* Forces background to stay dark */
+                z-index: 10;
+            }
+
+            .mobile-hover-active {
+                transform: scale(1.05) !important;
+
+                /* 1. Remove background tint to keep text clear */
+                background: #1a1a2e !important;
+
+                /* 2. Massive Neon Glow (Pure Outer Shadow) */
+                /* We use 4 layers to make it look thick like your screenshot */
+                box-shadow:
+                    0 0 10px #ff0000,
+                    0 0 15px #ff0000,
+                    0 0 25px rgba(255, 0, 0, 0.7),
+                    0 0 40px rgba(255, 0, 0, 0.4) !important;
+
+                border-color: #ff0000 !important;
+                z-index: 20 !important;
+            }
+        }
+    </style>
+
+
+</head>
+
+<body class="min-h-screen bg-[#0a0a0f] text-cyan-100 overflow-x-hidden selection:bg-pink-500/30">
+
+    <!-- Navbar -->
+    <nav class="fixed top-0 w-full z-50 bg-[#0a0a0f]/80 backdrop-blur-md border-b border-green-500">
+        <!-- <nav class="fixed top-0 w-full z-50 relative bg-[#0a0a0f]/80 backdrop-blur-md border-b border-cyan-500/30"> -->
+        <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+            <div class="text-2xl font-bold text-green-400 cursor-pointer glitch-text">
+                <!-- &lt   -->
+                Initializing@Portfolio:~$
+                <!-- [+] Initializing Portfolio.. -->
+                <!-- &gt; -->
+
+            </div>
+            <div class="hidden md:flex gap-8">
+                <a href="index.html"
+                    class="text-green-300 hover:text-red-400 transition-colors duration-300 relative group font-bold">
+                    Home
+                    <!-- nderline feature for u -->
+                    <span class="absolute -bottom-1 left-0 w-full h-0.5 bg-red-500 transition-all duration-300"></span>
+                </a>
+                <a href="about.html"
+                    class="text-green-300 hover:text-red-400 transition-colors duration-300 relative group font-bold">
+                    About
+                    <span
+                        class="absolute -bottom-1 left-0 w-0 h-0.5 bg-red-500 group-hover:w-full transition-all duration-300"></span>
+                </a>
+                <!-- <a href="project.html"
+                    class="text-green-300 hover:text-red-400 transition-colors duration-300 relative group font-bold">
+                    Projects
+                    <span
+                        class="absolute -bottom-1 left-0 w-0 h-0.5 bg-red-500 group-hover:w-full transition-all duration-300"></span>
+                </a> -->
+                <a href="blog.html"
+                    class="text-green-300 hover:text-red-400 transition-colors duration-300 relative group font-bold">
+                    Blog
+                    <span
+                        class="absolute -bottom-1 left-0 w-0 h-0.5 bg-red-500 group-hover:w-full transition-all duration-300"></span>
+                </a>
+                <a href="contact.html"
+                    class="text-green-300 hover:text-red-400 transition-colors duration-300 relative group font-bold">
+                    Contact
+                    <span
+                        class="absolute -bottom-1 left-0 w-0 h-0.5 bg-red-500 group-hover:w-full transition-all duration-300"></span>
+                </a>
+            </div>
+            <!-- Mobile Menu Button -->
+            <!-- Mobile Menu Button -->
+            <button id="menu-btn" class="md:hidden text-green-400 text-3xl">
+                ☰
+            </button>
+
+        </div>
+
+        <div id="mobile-menu"
+            class="hidden absolute top-20 left-0 w-full bg-[#0a0a0f] border-b border-cyan-500/30 py-6 flex flex-col items-center gap-6 shadow-2xl">
+            <a href="index.html" class="text-pink-300 text-xl font-bold">Home</a>
+            <a href="about.html" class="text-green-400 text-xl font-bold">About</a>
+            <!-- <a href="project.html" class="text-green-300 text-xl font-bold">Projects</a> -->
+            <a href="blog.html" class="text-green-300 text-xl font-bold">Blog</a>
+            <a href="contact.html" class="text-green-300 text-xl font-bold">Contact</a>
+        </div>
+    </nav>
+
+
+
+
+    <!-- New Hero Section -->
+    <!-- Hero Section -->
+    <section class="relative min-h-screen flex items-center justify-center pt-32 px-6">
+        <div class="text-center max-w-3xl">
+            <h1 class="text-6xl md:text-7xl font-bold mb-6 neon-cycle">
+                Md. Tahsin Hasan
+            </h1>
+            <h2 class="text-2xl md:text-3xl text-green-400 mb-6">
+                Cybersecurity Enthusiast
+            </h2>
+
+            <div class="flex flex-wrap gap-6 justify-center">
+                <!-- <a href="project.html"
+                    class="px-8 py-4 border-2 border-red-500 text-red-500 font-bold rounded-lg hover:bg-red-600 hover:text-black transition-all duration-300">
+                    View My Work <span>→</span>
+                </a> -->
+                <a href="/contact"
+                    class="px-8 py-4 border-2 border-green-400 text-green-400 font-bold rounded-lg hover:bg-green-500 hover:text-black transition-all duration-300">
+                    Get In Touch
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <style>
+        /* Neon color cycling for hero name */
+        @keyframes neonCycle {
+            0% {
+                color: #f90505;
+                text-shadow: 0 0 10px #f90505, 0 0 20px #f90505, 0 0 40px #f90505;
+            }
+
+            25% {
+                color: #22d3ee;
+                text-shadow: 0 0 10px #22d3ee, 0 0 20px #22d3ee, 0 0 40px #22d3ee;
+            }
+
+            50% {
+                color: #03d54c;
+                text-shadow: 0 0 10px #03d54c, 0 0 20px #03d54c, 0 0 40px #03d54c;
+            }
+
+            75% {
+                color: #2205f8;
+                text-shadow: 0 0 10px #2205f8, 0 0 20px #2205f8, 0 0 40px #2205f8;
+            }
+
+            100% {
+                color: #f90505;
+                text-shadow: 0 0 10px #f90505, 0 0 20px #f90505, 0 0 40px #f90505;
+            }
+        }
+
+        .neon-cycle {
+            animation: neonCycle 8s infinite alternate;
+        }
+    </style>
+
+    <!-- Mission Statement -->
+    <section class="py-32 px-6 relative">
+        <div class="max-w-4xl mx-auto">
+            <div class="relative group">
+                <div
+                    class="absolute inset-0 bg-gradient-to-r from-red-500/10 to-red-500/10 rounded-2xl blur-xl group-hover:opacity-100 transition-opacity glow">
+                </div>
+                <div class="relative permanent-glow">
+                    <div
+                        class="relative bg-[#1a1a2e]/50 backdrop-blur-md border border-red-600/30 rounded-2xl p-8 md:p-12 transition-all duration-500 group-hover:border-red-500/50 ">
+                        <h2 class="text-4xl font-bold mb-6 text-green-400">Bio</h2>
+                        <p class="text-xl text-gray-300 leading-relaxed italic">
+                            "Cybersecurity enthusiast and technology explorer passionate about understanding digital
+                            systems and securing them against modern threats. Constantly learning, experimenting, and
+                            building skills in ethical hacking, network security, and emerging technologies"
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- My Mission Section -->
+    <section class="py-32 px-6 relative">
+        <div class="max-w-6xl mx-auto text-center">
+            <h2 class="text-2xl md:text-3xl text-green-400 mb-6 font-bold">
+                Miscellaneous
+            </h2>
+        </div>
+        <br>
+        <div class="max-w-6xl mx-auto text-center">
+            <!-- <h2
+                class="text-5xl font-bold mb-12 bg-gradient-to-r from-cyan-400 via-pink-400 to-purple-400 bg-clip-text text-transparent">
+                My Mission
+            </h2>
+            <p class="text-xl text-gray-300 leading-relaxed italic mb-16 max-w-3xl mx-auto">
+                "To leverage technology as a force for positive change, creating innovative solutions that bridge the
+                gap between human needs and digital possibilities."
+            </p> -->
+
+            <div class="grid md:grid-cols-3 gap-10">
+
+                <div
+                    class="absolute inset-0 bg-gradient-to-r from-cyan-500/10 to-pink-500/10 rounded-2xl blur-xl group-hover:opacity-100 transition-opacity">
+                </div>
+                <div class="relative group permanent-glow">
+                    <div class="relative bg-[#1a1a2e]/50   rounded-2xl p-8 transition-all duration-500 ">
+                        <!-- <div class="text-5xl text-red-400 mb-6">&lt;&gt;</div> -->
+                        <h3 class="text-2xl font-bold text-green-400 mb-4">Adaptability</h3>
+                        <p class="text-gray-300 "> Challenges transform into opportunities as change becomes a path to
+                            growth.</p>
+                    </div>
+                </div>
+
+
+
+
+                <div class="relative group">
+                    <div
+                        class="absolute inset-0 bg-gradient-to-r from-cyan-500/10 to-pink-500/10 rounded-2xl blur-xl group-hover:opacity-100 transition-opacity">
+                    </div>
+                    <div
+                        class="relative bg-[#1a1a2e]/50 backdrop-blur-md border  rounded-2xl p-8 transition-all duration-500 group-hover permanent-glow">
+
+                        <!-- <div class="text-5xl text-red-400 mb-6">⚡</div> -->
+                        <h3 class="text-2xl font-bold text-green-400 mb-4">Patience </h3>
+                        <p class="text-gray-300"> Obstacles lose their weight because persistence carries progress
+                            forward.
+                        </p>
+                    </div>
+
+
+
+
+                </div>
+                <div class="relative group">
+                    <div
+                        class="absolute inset-0 bg-gradient-to-r from-cyan-500/10 to-pink-500/10 rounded-2xl blur-xl group-hover:opacity-100 transition-opacity">
+                    </div>
+
+                    <div
+                        class="relative bg-[#1a1a2e]/50 backdrop-blur-md border  rounded-2xl p-8 transition-all duration-500 group-hover permanent-glow">
+
+                        <!-- <div class="text-5xl text-red-400 mb-6">⚡</div> -->
+                        <h3 class="text-2xl font-bold text-green-400 mb-4">Curiosity </h3>
+                        <p class="text-gray-300">Knowledge expands endlessly and sparks innovation at every step.
+                        </p>
+                    </div>
+
+
+
+
+                </div>
+            </div>
+        </div>
+    </section>
+    <footer class="py-10 text-center bg-[#0a0a0f] border-t border-cyan-500/30">
+        <p> © 2026 Tahsin Hasan all rights reserved. </p>
+    </footer>
+
+    <script>
+        const menuBtn = document.getElementById("menu-btn");
+        const mobileMenu = document.getElementById("mobile-menu");
+
+        menuBtn.addEventListener("click", () => {
+            mobileMenu.classList.toggle("hidden");
+        });
+    </script>
+
+
+
+
+
+    <!-- for mobile hover effect -->
+
+
+
+    <script>
+        if (window.innerWidth < 768) {
+            const options = {
+                root: null,
+                // Widened the margin (-25%) so the glow "pops" earlier 
+                // and stays glowing for longer as you scroll past.
+                rootMargin: '-25% 0px -25% 0px',
+                threshold: 0.5
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('mobile-hover-active');
+                    } else {
+                        entry.target.classList.remove('mobile-hover-active');
+                    }
+                });
+            }, options);
+
+            // This ensures every card with these classes gets the effect
+            const cards = document.querySelectorAll(' .permanent-glow');
+            cards.forEach(card => observer.observe(card));
+        }
+    </script>
+
+
+
+</body>
+
+</html>
