@@ -532,7 +532,7 @@
             }, options);
 
             // This ensures every card with these classes gets the effect
-            const cards = document.querySelectorAll(' .permanent-glow');
+            const cards = document.querySelectorAll(' .permanent-glow,.hover-lift');
             cards.forEach(card => observer.observe(card));
         }
     </script>
@@ -544,32 +544,7 @@
 
 
 
-    <script>
-    // Only run on mobile/tablets
-    if (window.innerWidth < 768) {
-        const liftOptions = {
-            root: null,
-            rootMargin: '-30% 0px -30% 0px', // Triggers in the middle 40% of the screen
-            threshold: 0.6 
-        };
-
-        const liftObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    // Apply the lift when the element is centered
-                    entry.target.classList.add('hover-lift-active');
-                } else {
-                    // Remove it when it moves away
-                    entry.target.classList.remove('hover-lift-active');
-                }
-            });
-        }, liftOptions);
-
-        // Target ONLY lift elements
-        const liftCards = document.querySelectorAll('.hover-lift');
-        liftCards.forEach(card => liftObserver.observe(card));
-    }
-</script>
+ 
 
 </body>
 
